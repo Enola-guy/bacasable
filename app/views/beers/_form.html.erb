@@ -1,33 +1,12 @@
-<%= form_for(@beer) do |f| %>
-  <% if @beer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@beer.errors.count, "error") %> prohibited this beer from being saved:</h2>
-
-      <ul>
-      <% @beer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<%= semantic_form_for @beer do |f| %>
+  <%= f.inputs :name, :description %>
+ 
+    <%= f.input :festival %>
+  <%= f.semantic_fields_for :notes do |fn| %>
+    <%= fn.input :star %>
+    <%= fn.input :beer_geek, collection: BeerGeek.all %>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.number_field :note %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
- <div class="field">
-    <%= f.label :festival %><br>
-    <%= f.number_field :festival %>
-  </div>
+  <%= f.actions %>
 <% end %>
+
