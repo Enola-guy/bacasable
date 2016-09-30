@@ -10,10 +10,39 @@
   <%= @beer.description %>
 </p>
 
+<!--
 <p>
   <strong>Note:</strong>
-  <%= @beer.notes %>
+  <%= @beer.notes %> 
+</p>http://www.commentcamarche.net/forum/affich-6016234-inserer-un-commentaire-en-html
+-->
+
+
+<table>
+  <thead>
+    <tr>
+      <th>BeerGeek: </th>
+      <th>Notes: </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @beer.notes.each do |h| %>
+      <tr>
+	<td><%= h.beer_geek.name %></td>
+        <td><%= h.star %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<p>
+	<strong>Moyenne: </strong>
+	<%= @beer.moyenne %>
 </p>
+
 
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <%= link_to 'Back', beers_path %>
